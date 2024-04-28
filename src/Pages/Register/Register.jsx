@@ -5,13 +5,22 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { getAuth, updateProfile } from "firebase/auth";
+import {
+  GithubAuthProvider,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
 const auth = getAuth(app);
 
 const Register = () => {
   const { creatUser } = useContext(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -54,6 +63,39 @@ const Register = () => {
           .catch((error) => {
             console.error(error);
           });
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault();
+
+    signInWithPopup(auth, googleProvider)
+    .then((result) => {
+      console.log(result.user);
+      Swal.fire({
+        title: "Success!",
+        text: "User created successfully!",
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
+    })
+    .catch((error)=> {
+      console.error(error)
+    });
+  };
+
+  const handleGithubSignIn = (e) => {
+    e.preventDefault();
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Success!",
+          text: "User created successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
       })
       .catch((error) => console.error(error));
   };
@@ -122,14 +164,25 @@ const Register = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
+                <p className="text-center mt-4">
+                  Do not have an account{" "}
+                  <Link className="text-blue-600 font-bold" to="/login">
+                    Login
+                  </Link>
+                </p>
               </div>
+              <div className="flex items-center">
+                <hr className="w-full border-t-2 border-gray-300" />
+                <span className="mx-4 text-blue-500">Or</span>
+                <hr className="w-full border-t-2 border-gray-300" />
+              </div>
+              <button onClick={handleGoogleSignIn} className="btn btn-outline">
+                Google sign In
+              </button>
+              <button onClick={handleGithubSignIn} className="btn btn-outline">
+                Github sign In
+              </button>
             </form>
-            <p className="text-center mt-4">
-              Do not have an account{" "}
-              <Link className="text-blue-600 font-bold" to="/login">
-                Login
-              </Link>
-            </p>
           </div>
         </div>
       </div>
