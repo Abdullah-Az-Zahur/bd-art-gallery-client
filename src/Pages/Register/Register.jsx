@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link, Navigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { FaEye, FaRegEyeSlash } from "react-icons/fa";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -18,6 +19,7 @@ const auth = getAuth(app);
 
 const Register = () => {
   const { creatUser } = useContext(AuthContext);
+  const [showPass, setShowPass] = useState(false)
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -150,12 +152,17 @@ const Register = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={showPass ? 'text' : "password"}
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
                 />
+                <span className="absolute top-14 right-3"
+                onClick={()=> setShowPass(!showPass)}
+                >
+                  {showPass ? <FaRegEyeSlash></FaRegEyeSlash> : <FaEye></FaEye>}
+                </span>
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
