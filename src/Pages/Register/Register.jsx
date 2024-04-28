@@ -15,9 +15,10 @@ import {
 } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
-const auth = getAuth(app);
+
 
 const Register = () => {
+  const auth = getAuth(app);
   const { creatUser } = useContext(AuthContext);
   const [showPass, setShowPass] = useState(false);
 

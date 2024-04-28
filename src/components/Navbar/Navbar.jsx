@@ -1,27 +1,44 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import userDefaultPic from "../../assets/user.png";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const [theme, setTheme] = useState('wireframe')
+  const [theme, setTheme] = useState("wireframe");
+  const { user, logOut } = useContext(AuthContext);
 
-  useEffect(()=>{
-    localStorage.setItem('theme', theme)
-    const localtheme = localStorage.getItem('theme')
-    document.querySelector('html').setAttribute('data-theme', localtheme)
-  },[theme])
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully logged out.",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
 
-  const handleToggle = (e)=>{
-    if(e.target.checked){
-      setTheme('luxury')
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localtheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localtheme);
+  }, [theme]);
+
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("luxury");
+    } else {
+      setTheme("wireframe");
     }
-    else{
-      setTheme('wireframe')
-    }
-  }
+  };
 
-  console.log(theme)
+  console.log(theme);
 
   const navLinks = (
     <>
@@ -29,17 +46,22 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li className="ml-1">
-        <NavLink to="/allItems">All Art & craft Items</NavLink>
+        <NavLink to="/allItems">All Art</NavLink>
       </li>
-      <li className="ml-1">
-        <NavLink to="/addItem">Add Craft Item</NavLink>
-      </li>
-      <li className="ml-1">
-        <NavLink to="/myItem">My Art&Craft List</NavLink>
-      </li>
-      <li className="ml-1">
+      {user && (
+        <>
+          <li className="ml-1">
+            <NavLink to="/addItem">Add Art</NavLink>
+          </li>
+          <li className="ml-1">
+            <NavLink to="/myItem">My Art&Craft</NavLink>
+          </li>
+        </>
+      )}
+
+      {/* <li className="ml-1">
         <NavLink to="/login">Login</NavLink>
-      </li>
+      </li> */}
       <li className="ml-1">
         <NavLink to="/register">Register</NavLink>
       </li>
@@ -73,27 +95,25 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">
+        <Link to="/" className="btn btn-ghost text-xl">
           <img
             className="w-10"
             src="../../../public/inkpx-word-art.png"
             alt=""
           />
           BD Art Gallery
-        </a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
-
         {/* theme control */}
         <div>
           <label className="cursor-pointer grid place-items-center">
             <input
-            onChange={handleToggle}
+              onChange={handleToggle}
               type="checkbox"
-              
               className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
             />
             <svg
@@ -129,21 +149,32 @@ const Navbar = () => {
         </div>
 
         {/* user display */}
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-ghost btn-circle avatar"
-        >
-          <div className="w-10 rounded-full">
-            <img alt="Tailwind CSS Navbar component" src={userDefaultPic} />
-          </div>
+        <div>
+          {user ? (
+            <div className="flex gap-2 items-center">
+              <div title={user?.displayName || ""} className="avatar">
+                <div className="w-12 rounded-full">
+                  <div>
+                    <img src={user?.photoURL || userDefaultPic} />
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="btn btn-ghost btn-circle avatar:hidden  display  "
+              >
+                Log Out
+              </button>{" "}
+            </div>
+          ) : (
+            <Link
+              to="/login"
+              className="btn btn-ghost btn-circle avatar:hidden display  "
+            >
+              Login
+            </Link>
+          )}
         </div>
-        {/* {
-                        user ? <button onClick={handleSignOut} className='btn'>Sign out</button>
-                            : <Link to='/login'>
-                                <button className='btn'>Login</button>
-                            </Link>
-                    } */}
       </div>
     </div>
   );
