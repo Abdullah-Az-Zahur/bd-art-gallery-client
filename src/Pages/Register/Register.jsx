@@ -19,7 +19,7 @@ const auth = getAuth(app);
 
 const Register = () => {
   const { creatUser } = useContext(AuthContext);
-  const [showPass, setShowPass] = useState(false)
+  const [showPass, setShowPass] = useState(false);
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -73,18 +73,18 @@ const Register = () => {
     e.preventDefault();
 
     signInWithPopup(auth, googleProvider)
-    .then((result) => {
-      console.log(result.user);
-      Swal.fire({
-        title: "Success!",
-        text: "User created successfully!",
-        icon: "success",
-        confirmButtonText: "Ok",
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Success!",
+          text: "User created successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    })
-    .catch((error)=> {
-      console.error(error)
-    });
   };
 
   const handleGithubSignIn = (e) => {
@@ -147,19 +147,20 @@ const Register = () => {
                   required
                 />
               </div>
-              <div className="form-control">
+              <div className="form-control relative">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type={showPass ? 'text' : "password"}
+                  type={showPass ? "text" : "password"}
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
                 />
-                <span className="absolute top-14 right-3"
-                onClick={()=> setShowPass(!showPass)}
+                <span
+                  className="absolute top-14 right-3 "
+                  onClick={() => setShowPass(!showPass)}
                 >
                   {showPass ? <FaRegEyeSlash></FaRegEyeSlash> : <FaEye></FaEye>}
                 </span>
