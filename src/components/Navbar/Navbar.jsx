@@ -1,6 +1,30 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
+  const navLinks = (
+    <>
+      <li className="ml-9">
+        <NavLink to='/'>Home</NavLink>
+      </li>
+      <li className="ml-1">
+        <NavLink to='/allItems'>All Art & craft Items</NavLink>
+      </li>
+      <li className="ml-1">
+        <NavLink to='/addItem'>Add Craft Item</NavLink>
+      </li>
+      <li className="ml-1">
+        <NavLink to='/myItem'>My Art&Craft List</NavLink>
+      </li>
+      <li className="ml-1">
+        <NavLink to='/login'>Login</NavLink>
+      </li>
+      <li className="ml-1">
+        <NavLink to='/register'>Register</NavLink>
+      </li>
+    </>
+  );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -25,49 +49,20 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {navLinks}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">
+          <img
+            className="w-10"
+            src="../../../public/inkpx-word-art.png"
+            alt=""
+          />
+          BD Art Gallery
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
       <div className="navbar-end">
         <a className="btn">Button</a>
