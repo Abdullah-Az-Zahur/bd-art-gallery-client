@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyItem = () => {
   const { user } = useContext(AuthContext);
@@ -12,6 +13,41 @@ const MyItem = () => {
         setItem(data);
       });
   }, [user]);
+
+  const handleUpdate = (id) => {
+    console.log("dpdate", id);
+  };
+
+  const handleDelete = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/items/${_id}`,{
+          method: 'DELETE'
+        })
+        .then(res=> res.json())
+        .then(data=>{
+          console.log(data)
+          if (data.deletedCount > 0) {
+            Swal.fire(
+                'Deleted!',
+                'Your Item has been deleted.',
+                'success'
+            )
+            // const remaining = coffees.filter(cof => cof._id !== _id);
+            // setCoffees(remaining);
+        }
+        })
+      }
+    });
+  };
 
   return (
     <div>
@@ -30,7 +66,7 @@ const MyItem = () => {
                   </div>
                   <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left w-full h-full">
                     <h1 className="text-5xl font-bold leading-none sm:text-6xl">
-                      {name}
+                      {aItem.name}
                     </h1>
                     <p className="my-4">Price: {aItem.price}</p>
                     <hr />
@@ -58,13 +94,13 @@ const MyItem = () => {
                     </div>
                     <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
                       <button
-                        
+                        onClick={() => handleUpdate(aItem._id)}
                         className="px-8 py-3 text-lg font-semibold border rounded dark:bg-violet-600 dark:text-gray-50 btn btn-info text-white"
                       >
                         Update
                       </button>
                       <button
-                        
+                        onClick={() => handleDelete(aItem._id)}
                         className="px-8 py-3 text-lg font-semibold border rounded dark:bg-violet-600 dark:text-gray-50 btn btn-info text-white"
                       >
                         Delete
