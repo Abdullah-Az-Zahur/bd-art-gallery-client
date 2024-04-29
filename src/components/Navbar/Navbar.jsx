@@ -38,7 +38,7 @@ const Navbar = () => {
     }
   };
 
-  console.log(theme);
+  // console.log(theme);
 
   const navLinks = (
     <>

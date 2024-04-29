@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const AddItems = () => {
 
-  
+  const { user } = useContext(AuthContext);
 
   const handleAddCoffee = (event) => {
     event.preventDefault();
@@ -18,9 +19,11 @@ const AddItems = () => {
     const customization = form.customization.value;
     const stockStatus = form.stockStatus.value;
     const photo = form.photo.value;
+    const userName = user.displayName;
+    const userEmail = user.email
     
 
-    const newCoffee = {
+    const newItem = {
       name,
       price,
       subcategory,
@@ -29,18 +32,20 @@ const AddItems = () => {
       customization,
       stockStatus,
       photo,
+      userName,
+      userEmail
       
     };
 
-    console.log(newCoffee);
+    console.log(newItem);
 
     // send data to the server
-    fetch("http://localhost:5000/coffee", {
+    fetch("http://localhost:5000/items", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newCoffee),
+      body: JSON.stringify(newItem),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -48,7 +53,7 @@ const AddItems = () => {
         if (data.insertedId) {
           Swal.fire({
             title: "Success!",
-            text: "Coffee Added Successfully",
+            text: "Item Added Successfully",
             icon: "success",
             confirmButtonText: "Cool",
           });
