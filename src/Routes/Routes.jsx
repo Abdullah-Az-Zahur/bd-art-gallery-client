@@ -8,6 +8,8 @@ import Allitems from "../Pages/Allitems/Allitems";
 import PrivateRoutes from "./PrivateRoutes";
 import AddItems from "../Pages/AddItems/AddItems";
 import MyItem from "../Pages/MyItem/MyItem";
+import ItemDetails from "../Pages/ItemDetails/ItemDetails";
+
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ const router = createBrowserRouter([
       {
         path: "/allItems",
         element: <Allitems></Allitems>,
+        loader:() => fetch('http://localhost:5000/items')
+      },
+      {
+        path:'/ItemDetails/:id',
+        element:<PrivateRoutes>
+          <ItemDetails></ItemDetails>
+        </PrivateRoutes>,
+        loader:({params}) => fetch(`http://localhost:5000/items/${params.id}`)
       },
       {
         path: "/addItem",
