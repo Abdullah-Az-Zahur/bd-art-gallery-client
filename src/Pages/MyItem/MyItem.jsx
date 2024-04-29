@@ -13,7 +13,11 @@ const MyItem = () => {
       .then((data) => {
         setItem(data);
       });
-  }, [user]);
+  }, [user,item]);
+
+  // useEffect(()=>{
+
+  // },[item])
 
 
   const handleDelete = (_id) => {
@@ -39,8 +43,8 @@ const MyItem = () => {
                 'Your Item has been deleted.',
                 'success'
             )
-            // const remaining = coffees.filter(cof => cof._id !== _id);
-            // setCoffees(remaining);
+            const remaining = item.filter(aItem => aItem._id !== _id);
+            setItem(remaining);
         }
         })
       }
