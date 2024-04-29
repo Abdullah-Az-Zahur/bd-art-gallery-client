@@ -11,7 +11,6 @@ import MyItem from "../Pages/MyItem/MyItem";
 import ItemDetails from "../Pages/ItemDetails/ItemDetails";
 import UpdateItem from "../Pages/UpdateItem/UpdateItem";
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,14 +32,17 @@ const router = createBrowserRouter([
       {
         path: "/allItems",
         element: <Allitems></Allitems>,
-        loader:() => fetch('http://localhost:5000/items')
+        loader: () => fetch("http://localhost:5000/items"),
       },
       {
-        path:'/ItemDetails/:id',
-        element:<PrivateRoutes>
-          <ItemDetails></ItemDetails>
-        </PrivateRoutes>,
-        loader:({params}) => fetch(`http://localhost:5000/items/${params.id}`)
+        path: "/ItemDetails/:id",
+        element: (
+          <PrivateRoutes>
+            <ItemDetails></ItemDetails>
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/items/${params.id}`),
       },
       {
         path: "/addItem",
@@ -51,16 +53,23 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'/myItem',
-        element:<PrivateRoutes>
-          <MyItem></MyItem>
-        </PrivateRoutes>,
+        path: "/myItem",
+        element: (
+          <PrivateRoutes>
+            <MyItem></MyItem>
+          </PrivateRoutes>
+        ),
         // loader:({params}) => fetch(`http://localhost:5000/myItems/${params.id}`)
       },
       {
-        path:'/updateItem',
-        element:<UpdateItem></UpdateItem>
-      }
+        path: "/updateItem/:id",
+        element: (
+          <PrivateRoutes>
+            <UpdateItem></UpdateItem>
+          </PrivateRoutes>
+        ),
+        loader:({params})=> fetch(`http://localhost:5000/items/${params.id}`)
+      },
     ],
   },
 ]);

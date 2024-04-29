@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyItem = () => {
   const { user } = useContext(AuthContext);
@@ -14,9 +15,6 @@ const MyItem = () => {
       });
   }, [user]);
 
-  const handleUpdate = (id) => {
-    console.log("dpdate", id);
-  };
 
   const handleDelete = (_id) => {
     Swal.fire({
@@ -93,12 +91,12 @@ const MyItem = () => {
                       </p>
                     </div>
                     <div className="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-                      <button
-                        onClick={() => handleUpdate(aItem._id)}
+                      <Link
+                        to={`/updateItem/${aItem._id}`}
                         className="px-8 py-3 text-lg font-semibold border rounded dark:bg-violet-600 dark:text-gray-50 btn btn-info text-white"
                       >
                         Update
-                      </button>
+                      </Link>
                       <button
                         onClick={() => handleDelete(aItem._id)}
                         className="px-8 py-3 text-lg font-semibold border rounded dark:bg-violet-600 dark:text-gray-50 btn btn-info text-white"
