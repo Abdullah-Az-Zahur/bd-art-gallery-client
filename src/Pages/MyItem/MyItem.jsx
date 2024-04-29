@@ -53,7 +53,7 @@ const MyItem = () => {
 
   return (
     <div>
-      <div>
+      <div className="grid md:grid-cols-2 gap-4">
         {item.map((aItem) => (
           <div key={aItem._id}>
             <div>

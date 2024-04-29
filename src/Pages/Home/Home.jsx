@@ -1,9 +1,14 @@
 import React from 'react';
+import Slider from '../../components/Slider/Slider';
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     return (
         <div>
-            <h2>Home addf</h2>
+            <Helmet>
+                <title>BD Art Gallery | Home</title>
+            </Helmet>
+            <Slider></Slider>
         </div>
     );
 };
