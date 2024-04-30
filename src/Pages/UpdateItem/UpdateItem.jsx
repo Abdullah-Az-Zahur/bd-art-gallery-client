@@ -51,7 +51,7 @@ const UpdateItem = () => {
     console.log(updatedItem);
 
     // send data to the server
-    fetch(`http://localhost:5000/items/${_id}`, {
+    fetch(`https://bd-art-gallery-server.vercel.app/items/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

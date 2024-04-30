@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch(`http://localhost:5000/items`),
+        loader: () => fetch(`https://bd-art-gallery-server.vercel.app/items`),
       },
       {
         path: "/login",
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/allItems",
         element: <Allitems></Allitems>,
-        loader: () => fetch("http://localhost:5000/items"),
+        loader: () => fetch("https://bd-art-gallery-server.vercel.app/items"),
       },
       {
         path: "/craftItems",
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/${params.id}`),
+          fetch(`https://bd-art-gallery-server.vercel.app/items/${params.id}`),
       },
       {
         path: "/addItem",
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
             <MyItem></MyItem>
           </PrivateRoutes>
         ),
-        // loader:({params}) => fetch(`http://localhost:5000/myItems/${params.id}`)
+        // loader:({params}) => fetch(`https://bd-art-gallery-server.vercel.app/myItems/${params.id}`)
       },
       {
         path: "/updateItem/:id",
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/items/${params.id}`),
+          fetch(`https://bd-art-gallery-server.vercel.app/items/${params.id}`),
       },
     ],
   },

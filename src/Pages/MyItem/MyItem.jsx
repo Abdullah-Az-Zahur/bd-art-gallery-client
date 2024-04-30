@@ -9,7 +9,7 @@ const MyItem = () => {
   const [item, setItem] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myItems/${user.email}`)
+    fetch(`https://bd-art-gallery-server.vercel.app/myItems/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setItem(data);
@@ -32,7 +32,7 @@ const MyItem = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/items/${_id}`,{
+        fetch(`https://bd-art-gallery-server.vercel.app/items/${_id}`,{
           method: 'DELETE'
         })
         .then(res=> res.json())

@@ -40,7 +40,7 @@ const AddItems = () => {
     console.log(newItem);
 
     // send data to the server
-    fetch("http://localhost:5000/items", {
+    fetch("https://bd-art-gallery-server.vercel.app/items", {
       method: "POST",
       headers: {
         "content-type": "application/json",
