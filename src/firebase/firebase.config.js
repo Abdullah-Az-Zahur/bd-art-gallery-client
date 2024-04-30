@@ -5,13 +5,16 @@ import { getAuth } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+console.log('firebase',import.meta.env.VITE_PASS)
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBqmrQeOx91IuhOh3jTmBjMri4SZT3NVKs",
-  authDomain: "bd-art-gallery.firebaseapp.com",
-  projectId: "bd-art-gallery",
-  storageBucket: "bd-art-gallery.appspot.com",
-  messagingSenderId: "789479847872",
-  appId: "1:789479847872:web:eb74adba4a6584123c3a25"
+  apiKey:import.meta.env.VITE_APIKEY,
+  authDomain:import.meta.env.VITE_AUTHDOMAIN,
+  projectId:import.meta.env.VITE_PROJECTID,
+  storageBucket:import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId:import.meta.env.VITE_MESSAGINGSENDERID,
+  appId:import.meta.env.VITE_APPID,
 };
 
 // Initialize Firebase

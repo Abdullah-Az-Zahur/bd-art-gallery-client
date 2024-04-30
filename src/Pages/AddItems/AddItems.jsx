@@ -125,7 +125,7 @@ const AddItems = () => {
               <input
                 type="text"
                 name="shortDescription"
-                placeholder="Available Quantity"
+                placeholder="Short Description"
                 className="input input-bordered w-full"
               />
             </label>

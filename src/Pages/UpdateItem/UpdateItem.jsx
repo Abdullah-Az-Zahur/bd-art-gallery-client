@@ -139,7 +139,7 @@ const handleUpdateItem = (event)=>{
                 type="text"
                 name="shortDescription"
                 defaultValue={shortDescription}
-                placeholder="Available Quantity"
+                placeholder="Short Description"
                 className="input input-bordered w-full"
               />
             </label>

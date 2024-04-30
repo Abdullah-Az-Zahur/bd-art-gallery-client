@@ -10,6 +10,7 @@ import AddItems from "../Pages/AddItems/AddItems";
 import MyItem from "../Pages/MyItem/MyItem";
 import ItemDetails from "../Pages/ItemDetails/ItemDetails";
 import UpdateItem from "../Pages/UpdateItem/UpdateItem";
+import CraftItems from "../components/CraftItems/CraftItems";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+        loader: ()=> fetch (`http://localhost:5000/items`),
       },
       {
         path: "/login",
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
         path: "/allItems",
         element: <Allitems></Allitems>,
         loader: () => fetch("http://localhost:5000/items"),
+      },
+      {
+        path: "/craftItems",
+        element: <CraftItems></CraftItems>,       
       },
       {
         path: "/ItemDetails/:id",
