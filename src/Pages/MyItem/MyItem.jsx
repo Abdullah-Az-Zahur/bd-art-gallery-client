@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const MyItem = () => {
   const { user } = useContext(AuthContext);
@@ -53,6 +54,11 @@ const MyItem = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>
+          BD Art Gallery | My Arts
+        </title>
+      </Helmet>
       <div className="grid md:grid-cols-2 gap-4">
         {item.map((aItem) => (
           <div key={aItem._id}>

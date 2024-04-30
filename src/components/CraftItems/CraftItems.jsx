@@ -26,7 +26,7 @@ const CraftItems = ({ items }) => {
     <div className="mt-12">
       <div className="text-center mb-5" data-aos="fade-up">
         <h3 className="font-semibold text-3xl animate__animated animate__bounce ">
-          Our Recent Arts
+        Craft Items
         </h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-8 lg:pl-0 md:pl-0 ">

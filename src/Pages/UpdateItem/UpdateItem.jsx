@@ -14,11 +14,12 @@ const UpdateItem = () => {
     customization,
     stockStatus,
     photo,
+    processing_time,
     userName,
     userEmail,
   } = item;
 
-const handleUpdateItem = (event)=>{
+  const handleUpdateItem = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -30,8 +31,8 @@ const handleUpdateItem = (event)=>{
     const rating = form.rating.value;
     const customization = form.customization.value;
     const stockStatus = form.stockStatus.value;
+    const processing_time = form.processing_time.value;
     const photo = form.photo.value;
-    
 
     const updatedItem = {
       name,
@@ -42,9 +43,9 @@ const handleUpdateItem = (event)=>{
       customization,
       stockStatus,
       photo,
+      processing_time,
       userName,
-      userEmail
-      
+      userEmail,
     };
 
     console.log(updatedItem);
@@ -69,8 +70,7 @@ const handleUpdateItem = (event)=>{
           });
         }
       });
-
-}
+  };
 
   return (
     <div className="bg-[#F4F3F0] p-24">
@@ -89,6 +89,7 @@ const handleUpdateItem = (event)=>{
                 defaultValue={name}
                 placeholder="Name"
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
@@ -103,6 +104,7 @@ const handleUpdateItem = (event)=>{
                 defaultValue={price}
                 placeholder="Price"
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
@@ -118,6 +120,7 @@ const handleUpdateItem = (event)=>{
             <select
               name="subcategory"
               className="select select-bordered w-full max-w-xs"
+              required
             >
               <option disabled selected>
                 {subcategory}
@@ -141,6 +144,7 @@ const handleUpdateItem = (event)=>{
                 defaultValue={shortDescription}
                 placeholder="Short Description"
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
@@ -159,6 +163,7 @@ const handleUpdateItem = (event)=>{
                 defaultValue={rating}
                 placeholder="Rating"
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
@@ -169,6 +174,7 @@ const handleUpdateItem = (event)=>{
             <select
               name="customization"
               className="select select-bordered w-full max-w-xs"
+              required
             >
               <option disabled selected>
                 {customization}
@@ -187,27 +193,30 @@ const handleUpdateItem = (event)=>{
             <select
               name="stockStatus"
               className="select select-bordered w-full max-w-xs"
+              required
             >
               <option disabled selected>
-              {stockStatus}
+                {stockStatus}
               </option>
               <option value="stock">In stock</option>
               <option value="order">Made to Order</option>
             </select>
           </div>
-          {/* <div className="form-control md:w-1/2 ml-4">
+          <div className="form-control md:w-1/2 ml-4">
             <label className="label">
-              <span className="label-text">Details</span>
+              <span className="label-text">Processing Time</span>
             </label>
             <label className="input-group">
               <input
-                type="text"
-                name="details"
-                placeholder="Details"
+                type="datetime-local"
+                name="processing_time"
+                defaultValue={processing_time}
+                placeholder="Processing Time"
                 className="input input-bordered w-full"
+                required
               />
             </label>
-          </div> */}
+          </div>
         </div>
         {/* form Photo url row */}
         <div className="mb-8">
@@ -222,6 +231,7 @@ const handleUpdateItem = (event)=>{
                 defaultValue={photo}
                 placeholder="Photo URL"
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
