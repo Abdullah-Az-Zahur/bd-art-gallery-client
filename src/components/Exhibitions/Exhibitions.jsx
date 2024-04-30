@@ -28,7 +28,7 @@ const Exhibitions = ({ items }) => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div className="card bg-base-100 shadow-xl">
           <figure>
-            <img src="../../../public/landscapePainting.jpg" alt="Shoes" />
+            <img src="https://i.ibb.co/vwkrKGf/landscape-Painting.jpg" alt="Shoes" />
           </figure>
           <div className="card-body">
             <h2 className="card-title text-center items-center mx-auto">
@@ -39,7 +39,7 @@ const Exhibitions = ({ items }) => {
         </div>
         <div className="card bg-base-100 shadow-xl">
           <figure>
-            <img src="../../../public/PortraitDrawing.jpg" alt="Shoes" />
+            <img src="https://i.ibb.co/YX3LbCD/Portrait-Drawing.jpg" alt="Shoes" />
           </figure>
           <div className="card-body">
             <h2 className="card-title text-center items-center mx-auto">
@@ -50,7 +50,7 @@ const Exhibitions = ({ items }) => {
         </div>
         <div className="card bg-base-100 shadow-xl">
           <figure>
-            <img src="../../../public/WatercolourPainting.jpg" alt="Shoes" />
+            <img src="https://i.ibb.co/Yp4N4np/Watercolour-Painting.jpg" alt="Shoes" />
           </figure>
           <div className="card-body">
             <h2 className="card-title text-center items-center mx-auto">

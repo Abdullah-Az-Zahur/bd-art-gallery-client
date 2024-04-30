@@ -98,7 +98,7 @@ const Navbar = () => {
         <Link to="/" className="btn btn-ghost text-xl">
           <img
             className="w-10"
-            src="../../../public/inkpx-word-art.png"
+            src="https://i.ibb.co/Mh93vZT/BD-Art-icon.png"
             alt=""
           />
           BD Art Gallery
