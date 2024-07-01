@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link, Navigate, } from "react-router-dom";
+import ItemCard from "../ItemCard/ItemCard";
 
 const CraftItems = ({ items }) => {
   const { user } = useContext(AuthContext);
+  
   const [
     {
       _id,
@@ -29,34 +31,12 @@ const CraftItems = ({ items }) => {
         Craft Items
         </h3>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-8 lg:pl-0 md:pl-0 ">
-        {items.map((item) => (
-          <div
-            key={item._id}
-            className="card  bg-base-100 shadow-xl image-full"
-          >
-            <figure>
-              <img src={photo} alt="Art" />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title">{name}</h2>
-              <p>{subcategory}</p>
-              <p>{item.shortDescription}</p>
-              <div className="card-actions justify-end">
-                {
-                    user ? (
-                        <Link to={`/ItemDetails/${_id}`}>
-                            <button className="btn btn-primary">View Details</button>
-                        </Link>
-                    )
-                    :(
-                        <button onClick={() => Navigate("/login")} className="btn btn-primary" >View Details</button>
-                    )
-                }
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 p-8 lg:pl-0 md:pl-0 ">
+        
+      {items.map((item) => (
+            <ItemCard key={item._id} item={item}></ItemCard>
+          ))}
+        
       </div>
     </div>
   );
